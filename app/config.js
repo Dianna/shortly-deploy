@@ -7,7 +7,7 @@ var mongoose = require('mongoose');
 var path = require('path');
 var bcrypt = require('bcrypt-nodejs');
 // mongoose.connect('mongodb:your_database_user:password@127.0.0.1/db')
-mongoose.connect('mongodb://localhost/xdb');
+mongoose.connect('mongodb://localhost/test');
 
 var db = mongoose.connection;
 
