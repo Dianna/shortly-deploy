@@ -36,8 +36,8 @@ module.exports = function(grunt) {
     },
 
     jshint: {
-      files: [
-
+      files:[
+        './public/client/*.js'
       ],
       options: {
         force: 'true',
