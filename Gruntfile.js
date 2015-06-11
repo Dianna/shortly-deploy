@@ -7,8 +7,8 @@ module.exports = function(grunt) {
         separator: ';'
       },
       dist: {
-        src: ['./**/*.js', '!./**/node_modules/*'],
-        dest: 'server/everythingjs.js'
+        src: ['./public/lib/handlebars.js','./public/lib/jquery.js','./public/lib/underscore.js','./public/lib/backbone.js'],
+        dest: './public/dist/lib.js'
       }
     },
 
@@ -28,11 +28,16 @@ module.exports = function(grunt) {
     },
 
     uglify: {
+      my_target: {
+        files: {
+          './public/dist/lib.min.js': './public/dist/lib.js'
+        }
+      }
     },
 
     jshint: {
       files: [
-        // Add filespec list here
+
       ],
       options: {
         force: 'true',
@@ -45,6 +50,11 @@ module.exports = function(grunt) {
     },
 
     cssmin: {
+      target: {
+        files: {
+          './public/dist/style.min.css' : './public/style.css'
+        }
+      }
     },
 
     watch: {
@@ -97,13 +107,14 @@ module.exports = function(grunt) {
   ////////////////////////////////////////////////////
 
   grunt.registerTask('test', [
-    'mochaTest'
+    'jshint'
+    // 'mochaTest'
   ]);
 
   grunt.registerTask('build', [
-    'concat'
-    // 'uglify',
-    // 'cssmin'
+    'concat',
+    'uglify',
+    'cssmin'
   ]);
 
   grunt.registerTask('upload', function(n) {
