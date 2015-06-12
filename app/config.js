@@ -6,7 +6,7 @@
 var mongoose = require('mongoose');
 var path = require('path');
 var bcrypt = require('bcrypt-nodejs');
-mongoose.connect('mongodb:your_database_user:password@127.0.0.1/db')
+mongoose.connect('mongodb://MongoLab-7:JN2AWyc1O5B9i_nm0jjlBqO3eAJ1qJ97EljTLJwefIM-@ds036638.mongolab.com:36638/MongoLab-7')
 // mongoose.connect('mongodb://localhost/db');
 
 var db = mongoose.connection;
