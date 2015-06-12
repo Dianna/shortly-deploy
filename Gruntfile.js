@@ -7,8 +7,8 @@ module.exports = function(grunt) {
         separator: ';'
       },
       dist: {
-        src: ['./public/lib/handlebars.js','./public/lib/jquery.js','./public/lib/underscore.js','./public/lib/backbone.js'],
-        dest: './public/dist/<%= pkg =>.js'
+        src: ['public/client/**/*.js'],
+        dest: 'public/dist/<%= pkg.name >.js'
       }
     },
 
@@ -28,16 +28,23 @@ module.exports = function(grunt) {
     },
 
     uglify: {
-      my_target: {
+      options: {
+        banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\n'
+      },
+      dist: {
         files: {
-          './public/dist/lib.min.js': './public/dist/lib.js'
+          'public/dist/<%= pkg.name %>.min.js': ['<%= concat.dist.dest %>']
         }
       }
     },
 
     jshint: {
       files:[
-        './public/client/*.js'
+        'Gruntfile.js',
+        './app/**/*.js',
+        './lib/**/*.js',
+        './public/**/*.js',
+        './test/**/*.js'
       ],
       options: {
         force: 'true',
@@ -52,7 +59,7 @@ module.exports = function(grunt) {
     cssmin: {
       target: {
         files: {
-          './public/dist/style.min.css' : './public/style.css'
+          'public/dist/style.min.css' : './public/style.css'
         }
       }
     },
@@ -107,7 +114,7 @@ module.exports = function(grunt) {
   ////////////////////////////////////////////////////
 
   grunt.registerTask('test', [
-    // 'jshint'
+    'jshint',
     'mochaTest'
   ]);
 
@@ -126,7 +133,8 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('deploy', [
-    // add your deploy tasks here
+    'test',
+    'build'
   ]);
 
 
