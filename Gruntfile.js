@@ -8,7 +8,7 @@ module.exports = function(grunt) {
       },
       dist: {
         src: ['public/client/**/*.js'],
-        dest: 'public/dist/<%= pkg.name >.js'
+        dest: 'public/dist/shortly-express.js'
       }
     },
 
